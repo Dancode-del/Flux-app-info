@@ -1,244 +1,35 @@
-.section{padding:90px 7%}
-.section-title{max-width:650px;margin:0 auto 45px;text-align:center}
-.section-title span{
-color:#6366f1;font-weight:800;font-size:13px;
-text-transform:uppercase;letter-spacing:2px
-}
-.section-title h2{margin-top:10px;font-size:40px;letter-spacing:-2px}
-.section-title p{margin-top:10px;color:#64748b}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-.features{
-max-width:1100px;margin:auto;display:grid;
-grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px
-}
-.card{
-padding:28px;border-radius:22px;background:rgba(255,255,255,.78);
-border:1px solid rgba(226,232,240,.8);
-box-shadow:0 15px 45px rgba(15,23,42,.06);transition:.3s ease
-}
-.card:hover{
-transform:translateY(-7px);
-box-shadow:0 22px 55px rgba(15,23,42,.1)
-}
-.icon{
-width:48px;height:48px;display:grid;place-items:center;
-border-radius:15px;margin-bottom:20px;font-size:21px;
-background:linear-gradient(135deg,#eef2ff,#ecfeff)
-}
-.card h3{margin-bottom:8px;font-size:19px}
-.card p{color:#64748b;font-size:14px}
+      <title>Flux — Browse Freely</title>
+        <meta name="description" content="Flux is a fast, smooth and lightweight browser built for a better web experience.">
 
-.about-box{
-max-width:950px;margin:auto;padding:55px;text-align:center;
-border-radius:28px;background:linear-gradient(135deg,#111827,#312e81);
-color:white;box-shadow:0 30px 70px rgba(30,41,59,.18)
-}
-.about-box h2{font-size:38px;letter-spacing:-1.5px;margin-bottom:15px}
-.about-box p{max-width:650px;margin:auto;color:#cbd5e1}
+          <style>
+              * {
+                    margin: 0;
+                          padding: 0;
+                                box-sizing: border-box;
+                                    }
 
-footer{
-padding:35px 7%;border-top:1px solid #e5e7eb;
-background:rgba(255,255,255,.65)
-}
-.footer-inner{
-max-width:1100px;margin:auto;display:flex;
-justify-content:space-between;align-items:center;
-gap:20px;flex-wrap:wrap
-}
-.copyright{color:#64748b;font-size:13px}
-.footer-links{display:flex;gap:20px;font-size:13px;color:#64748b}
-.footer-links a:hover{color:#4f46e5}
+                                        html, body {
+                                              width: 100%;
+                                                    min-height: 100%;
+                                                        }
 
-@media(max-width:650px){
-header{padding:15px 5%}
-.nav-links a:not(.nav-button){display:none}
-.hero{padding-top:80px}
-.hero h1{letter-spacing:-4px}
-.hero p{font-size:16px}
-.browser-window{min-height:320px}
-.about-box{padding:40px 25px}
-.about-box h2{font-size:30px}
-}
-</style>
-</head>
+                                                            body {
+                                                                  font-family: Arial, sans-serif;
+                                                                        background: #f5f7ff;
+                                                                              color: #111827;
+                                                                                  }
+                                                                                    </style>
+                                                                                    </head>
 
-<body><header>
-    <div class="nav">
+                                                                                    <body>
 
-    <a href="#" class="brand">
-    <div class="brand-icon">F</div>
-    Flux
-    </a>
+                                                                                      <!-- Flux page content will go here -->
 
-    <nav class="nav-links">
-    <a href="#features">Features</a>
-    <a href="#about">About</a>
-
-    <a href="https://dancode-del.github.io/Flux-privacy-policy-/"
-    target="_blank" rel="noopener">
-    Privacy
-    </a>
-
-    <a href="#download" class="nav-button">Get Flux</a>
-    </nav>
-
-    </div>
-    </header>
-
-    <main>
-
-    <section class="hero">
-
-    <div class="badge">
-    <span class="dot"></span>
-    Built for a better web
-    </div>
-
-    <h1>Flux</h1>
-
-    <p>
-    A fast, smooth and lightweight browser designed to make
-    everyday browsing feel simple, clean and effortless.
-    </p>
-
-    <div class="hero-buttons" id="download">
-
-    <a href="#" class="primary-button">
-    Get Flux
-    </a>
-
-    <a href="#features" class="secondary-button">
-    Explore Flux
-    </a>
-
-    </div>
-
-    <div class="browser-preview">
-
-    <div class="browser-window">
-
-    <div class="window-top">
-    <span class="window-dot"></span>
-    <span class="window-dot"></span>
-    <span class="window-dot"></span>
-
-    <div class="address">
-    Search or enter a web address
-    </div>
-    </div>
-
-    <div class="window-content">
-
-    <h2>Welcome to Flux.</h2>
-
-    <p>
-    Browse the web your way.
-    </p>
-
-    <div class="search-demo">
-    🔍 &nbsp; Search the web or enter a URL
-    </div>
-
-    </div>
-
-    </div>
-    </div>
-
-    </section><section class="section" id="features">
-
-        <div class="section-title">
-
-        <span>Why Flux</span>
-
-        <h2>Simple. Fast. Smooth.</h2>
-
-        <p>
-        Everything you need for everyday browsing,
-        without unnecessary clutter.
-        </p>
-
-        </div>
-
-        <div class="features">
-
-        <div class="card">
-        <div class="icon">⚡</div>
-        <h3>Fast browsing</h3>
-        <p>
-        A lightweight experience designed to keep browsing
-        responsive and smooth.
-        </p>
-        </div>
-
-        <div class="card">
-        <div class="icon">✨</div>
-        <h3>Clean interface</h3>
-        <p>
-        A modern interface that keeps your browsing experience
-        simple and easy to navigate.
-        </p>
-        </div>
-
-        <div class="card">
-        <div class="icon">🔒</div>
-        <h3>Privacy focused</h3>
-        <p>
-        Flux is built with a straightforward approach to
-        privacy and responsible browsing.
-        </p>
-        </div>
-
-        <div class="card">
-        <div class="icon">📱</div>
-        <h3>Lightweight</h3>
-        <p>
-        Designed to provide a practical browsing experience
-        without unnecessary complexity.
-        </p>
-        </div>
-
-        </div>
-        </section><section class="section" id="about">
-
-            <div class="about-box">
-
-            <h2>Made for the way you browse.</h2>
-
-            <p>
-            Flux is a mobile browser focused on speed, simplicity
-            and a smooth web experience. Our goal is straightforward:
-            make browsing feel better.
-            </p>
-
-            </div>
-            </section>
-
-            </main>
-
-            <footer>
-
-            <div class="footer-inner">
-
-            <div class="copyright">
-            © 2026 Flux. All rights reserved.
-            </div>
-
-            <div class="footer-links">
-
-            <a href="https://dancode-del.github.io/Flux-privacy-policy-/"
-            target="_blank" rel="noopener">
-            Privacy Policy
-            </a>
-
-            <a href="mailto:fluxsupport2@gmail.com">
-            Contact
-            </a>
-
-            </div>
-
-            </div>
-
-            </footer>
-
-            </body>
-            </html>
+                                                                                      </body>
+                                                                                      </html>
