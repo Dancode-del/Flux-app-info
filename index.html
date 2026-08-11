@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Flux — Browse Freely</title>
+  <meta name="description" content="Flux is a fast, smooth and lightweight browser built for a better web experience.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+      color: #111827;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(99,102,241,.18), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(14,165,233,.18), transparent 28%),
+        radial-gradient(circle at 50% 90%, rgba(168,85,247,.12), transparent 30%),
+        #ffffff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* NAVBAR */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 18px 7%;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: rgba(255,255,255,.72);
+      border-bottom: 1px solid rgba(255,255,255,.7);
+    }
+
+    .nav {
+      max-width: 1150px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 900;
+      background: linear-gradient(135deg, #6366f1, #06b6d4);
+      box-shadow: 0 8px 25px rgba(79,70,229,.25);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      color: #4b5563;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: #4f46e5;
+    }
+
+    .nav-button {
+      padding: 10px 17px;
+      color: white !important;
+      border-radius: 12px;
+      background: #111827;
+    }
+
+    /* HERO */
+
+    .hero {
+      max-width: 1050px;
+      margin: auto;
+      padding: 110px 24px 100px;
+      text-align: center;
+      position: relative;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.75);
+      border: 1px solid rgba(99,102,241,.18);
+      box-shadow: 0 8px 30px rgba(31,41,55,.06);
+      color: #4f46e5;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 25px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 12px #22c55e;
+    }
+
+    .hero h1 {
+      font-size: clamp(58px, 12vw, 110px);
+      line-height: .95;
+      letter-spacing: -7px;
+      font-weight: 900;
+      margin-bottom: 25px;
+      background: linear-gradient(
+        110deg,
+        #111827 10%,
+        #4f46e5 45%,
+        #06b6d4 75%,
+        #8b5cf6
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: auto;
+      font-size: 19px;
+      color: #64748b;
+    }
+
+    .hero-buttons {
+      margin-top: 35px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .primary-button,
+    .secondary-button {
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: .25s ease;
+    }
+
+    .primary-button {
+      color: white;
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      box-shadow: 0 12px 30px rgba(79,70,229,.25);
+    }
+
+    .secondary-button {
+      background: rgba(255,255,255,.8);
+      border: 1px solid #e5e7eb;
+    }
+
+    .primary-button:hover,
+    .secondary-button:hover {
+      transform: translateY(-3px);
+    }
+
+    /* BROWSER PREVIEW */
+
+    .browser-preview {
+      max-width: 900px;
+      margin: 20px auto 0;
+      padding: 9px;
+      border-radius: 25px;
+      background: linear-gradient(
+        135deg,
+        rgba(99,102,241,.35),
+        rgba(6,182,212,.25),
+        rgba(168,85,247,.3)
+      );
+      box-shadow: 0 30px 80px rgba(30,41,59,.15);
+    }
+
+    .browser-window {
+      min-height: 390px;
+      border-radius: 18px;
+      background: #ffffff;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.8);
+    }
+
+    .window-top {
+      padding: 13px 16px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: #f8fafc;
+      border-bottom: 1px solid #eef2f7;
+    }
+
+    .window-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #d1d5db;
+    }
+
+    .address {
+      flex: 1;
+      margin-left: 10px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      background: #eef2ff;
+      color: #64748b;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    .window-content {
+      padding: 55px 25px;
+      background:
+        radial-gradient(circle at 20% 20%, #eef2ff, transparent 35%),
+        radial-gradient(circle at 80% 60%, #ecfeff, transparent 35%);
+    }
+
+    .window-content h2 {
+      font-size: 35px;
+      letter-spacing: -1.5px;
+      margin-bottom: 10px;
+    }
+
+    .window-content p {
+      color: #64748b;
+    }
+
+    .search-demo {
+      max-width: 500px;
+      margin: 28px auto;
+      padding: 16px 20px;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 15px;
+      text-align: left;
+      color: #94a3b8;
+      box-shadow: 0 10px 35px rgba(15,23,42,.08);
+    }
+
+    /* FEATURES */
+
+    .section {
+      padding: 90px 7%;
+    }
+
+    .section-title {
+      max-width: 650px;
+      margin: 0 auto 45px;
+      text-align: center;
+    }
+
+    .section-title span {
+      color: #6366f1;
+      font-weight: 800;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .section-title h2 {
+      margin-top: 10px;
+      font-size: 40px;
+      letter-spacing: -2px;
+    }
+
+    .section-title p {
+      margin-top: 10px;
+      color: #64748b;
+    }
+
+    .features {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      padding: 28px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(226,232,240,.8);
+      box-shadow: 0 15px 45px rgba(15,23,42,.06);
+      transition: .3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 22px 55px rgba(15,23,42,.1);
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      font-size: 21px;
+      background: linear-gradient(135deg, #eef2ff, #ecfeff);
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+      font-size: 19px;
+    }
+
+    .card p {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    /* ABOUT */
+
+    .about-box {
+      max-width: 950px;
+      margin: auto;
+      padding: 55px;
+      text-align: center;
+      border-radius: 28px;
+      background: linear-gradient(135deg, #111827, #312e81);
+      color: white;
+      box-shadow: 0 30px 70px rgba(30,41,59,.18);
+    }
+
+    .about-box h2 {
+      font-size: 38px;
+      letter-spacing: -1.5px;
+      margin-bottom: 15px;
+    }
+
+    .about-box p {
+      max-width: 650px;
+      margin: auto;
+      color: #cbd5e1;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 35px 7%;
+      border-top: 1px solid #e5e7eb;
+      background: rgba(255,255,255,.65);
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .copyright {
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    .footer-links a:hover {
+      color: #4f46e5;
+    }
+
+    @media (max-width: 650px) {
+      header {
+        padding: 15px 5%;
+      }
+
+      .nav-links a:not(.nav-button) {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 80px;
+      }
+
+      .hero h1 {
+        letter-spacing: -4px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .browser-window {
+        min-height: 320px;
+      }
+
+      .about-box {
+        padding: 40px 25px;
+      }
+
+      .about-box h2 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <header>
+    <div class="nav">
+
+      <a href="#" class="brand">
+        <div class="brand-icon">F</div>
+        Flux
+      </a>
+
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a
+          href="https://dancode-del.github.io/Flux-privacy-policy-/"
+          target="_blank"
+          rel="noopener">
+          Privacy
+        </a>
+        <a href="#download" class="nav-button">Get Flux</a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+  <main>
+
+    <section class="hero">
+
+      <div class="badge">
+        <span class="dot"></span>
+        Built for a better web
+      </div>
+
+      <h1>Flux</h1>
+
+      <p>
+        A fast, smooth and lightweight browser designed to make
+        everyday browsing feel simple, clean and effortless.
+      </p>
+
+      <div class="hero-buttons" id="download">
+        <!-- Replace # with your Google Play URL when available -->
+        <a href="#" class="primary-button">
+          Get Flux
+        </a>
+
+        <a href="#features" class="secondary-button">
+          Explore Flux
+        </a>
+      </div>
+
+      <!-- Browser visual -->
+      <div class="browser-preview">
+
+        <div class="browser-window">
+
+          <div class="window-top">
+            <span class="window-dot"></span>
+            <span class="window-dot"></span>
+            <span class="window-dot"></span>
+
+            <div class="address">
+              Search or enter a web address
+            </div>
+          </div>
+
+          <div class="window-content">
+            <h2>Welcome to Flux.</h2>
+
+            <p>
+              Browse the web your way.
+            </p>
+
+            <div class="search-demo">
+              🔍 &nbsp; Search the web or enter a URL
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+    <section class="section" id="features">
+
+      <div class="section-title">
+        <span>Why Flux</span>
+
+        <h2>Simple. Fast. Smooth.</h2>
+
+        <p>
+          Everything you need for everyday browsing,
+          without unnecessary clutter.
+        </p>
+      </div>
+
+      <div class="features">
+
+        <div class="card">
+          <div class="icon">⚡</div>
+          <h3>Fast browsing</h3>
+          <p>
+            A lightweight experience designed to keep browsing
+            responsive and smooth.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">✨</div>
+          <h3>Clean interface</h3>
+          <p>
+            A modern interface that keeps your browsing experience
+            simple and easy to navigate.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🔒</div>
+          <h3>Privacy focused</h3>
+          <p>
+            Flux is built with a straightforward approach to
+            privacy and responsible browsing.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">📱</div>
+          <h3>Lightweight</h3>
+          <p>
+            Designed to provide a practical browsing experience
+            without unnecessary complexity.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+
+      <div class="about-box">
+
+        <h2>Made for the way you browse.</h2>
+
+        <p>
+          Flux is a mobile browser focused on speed, simplicity
+          and a smooth web experience. Our goal is straightforward:
+          make browsing feel better.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="footer-inner">
+
+      <div class="copyright">
+        © 2026 Flux. All rights reserved.
+      </div>
+
+      <div class="footer-links">
+
+        <a
+          href="https://dancode-del.github.io/Flux-privacy-policy-/"
+          target="_blank"
+          rel="noopener">
+          Privacy Policy
+        </a>
+
+        <a href="mailto:fluxsupport2@gmail.com">
+          Contact
+        </a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+</body>
+</html>
